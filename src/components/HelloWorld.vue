@@ -22,10 +22,11 @@ onMounted(async () => {
   });
   console.log(`content ${content.value} for path ${window.location.pathname}`);
 
-  //
+  // Track a page view
+  // NOTE: Comment out to test if conversions are tracked without impression
+  await track({ type: 'impression', apiKey });
 
   // Track a conversion  
-  await track({ type: 'impression', apiKey })
   await track({ type: 'conversion', amount: 90, apiKey });
   canShowContent.value = content.value ? true : isPreviewing();
 });
